@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SlashMatrix Preview</title>
+<style>
+  @font-face {
+    font-family: 'SlashMatrix';
+    src: url('slash_matrix.ttf?v=6') format('truetype');
+  }
+  .custom-font {
+    font-family: 'SlashMatrix', monospace;
+    font-feature-settings: 'calt' 1;
+    text-rendering: optimizeLegibility;
+  }
+</style>
+</head>
+<body>
+  <h2>Type to preview:</h2>
+  <textarea id="input" rows="6" style="width:60%;">
+aaaaaaaaaaaaaaaaaaaaaaaaaaa
+bbbbbbbbbbbbbbbbbbbbbbbbbbb
+ccccccccccccccccccccccccccc
+ddddddddddddddddddddddddddd
+eeeeeeeeeeeeeeeeeeeeeeeeeee
+fffffffffffffffffffffffffff    
+  </textarea>
+  <pre id="display" class="custom-font" style="font-size:32px; margin-top:10px;"></pre>
+  <script>
+    const input = document.getElementById('input');
+    const display = document.getElementById('display');
+    display.textContent = input.value;
+    input.addEventListener('input', () => { display.textContent = input.value; });
+  </script>
+</body>
+</html>
