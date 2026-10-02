@@ -16,15 +16,18 @@ SLASH = set(order[:STATES // 2])
 INITIAL = {cp: random.randint(0, STATES - 1) for cp in CHARS}
 
 
-def derangement(n):
-    while True:
-        p = list(range(n))
-        random.shuffle(p)
-        if all(p[i] != i for i in range(n)):
-            return p
+def cycle(n):
 
 
-NEXT = [derangement(STATES) for _ in range(GROUPS)]
+    order = list(range(n))
+    random.shuffle(order)
+    p = [0] * n
+    for i in range(n):
+        p[order[i]] = order[(i + 1) % n]
+    return p
+
+
+NEXT = [cycle(STATES) for _ in range(GROUPS)]
 
 
 def name(cp, s):
