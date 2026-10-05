@@ -83,6 +83,6 @@ fb.setupHorizontalMetrics({n: (ADVANCE, getattr(g, "xMin", 0)) for n, g in glyph
 fb.setupHorizontalHeader(ascent=ASCENT, descent=DESCENT)
 fb.setupNameTable({"familyName": "Slashes", "styleName": "Regular"}, mac=False)
 fb.setupOS2(sTypoAscender=ASCENT, sTypoDescender=DESCENT, usWinAscent=ASCENT, usWinDescent=-DESCENT)
-fb.setupPost()
+fb.setupPost(keepGlyphNames=False)
 fb.addOpenTypeFeatures(features())
 fb.save("slash.ttf")
