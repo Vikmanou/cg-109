@@ -76,6 +76,7 @@ for fam in FAMILIES:
         glyphs[name(fam, s)] = empty if fam[1] else shape[s in SLASH]
 
 fb = FontBuilder(1000, isTTF=True)
+fb.updateHead(created=2082844800, modified=2082844800)
 fb.setupGlyphOrder(list(glyphs))
 fb.setupCharacterMap({cp: name(family(cp), INITIAL[cp]) for cp in CHARS})
 fb.setupGlyf(glyphs)
