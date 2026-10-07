@@ -7,18 +7,18 @@ STATES, GROUPS = 16, 7
 CHARS = [*range(0x20, 0x7F), *range(0xA0, 0x100), 0x2013, 0x2014, 0x2018, 0x2019, 0x201C, 0x201D, 0x2022, 0x2026, 0x20AC, 0x2122, 0x2190, 0x2191, 0x2192, 0x2193]
 SPACES = {0x20, 0xA0}
 
-random.seed(42)
+rng = random.Random(42)
 order = list(range(STATES))
-random.shuffle(order)
+rng.shuffle(order)
 SLASH = set(order[:STATES // 2])
-INITIAL = {cp: random.randint(0, STATES - 1) for cp in CHARS}
+INITIAL = {cp: rng.randint(0, STATES - 1) for cp in CHARS}
 
 
 def cycle(n):
 
 
     order = list(range(n))
-    random.shuffle(order)
+    rng.shuffle(order)
     p = [0] * n
     for i in range(n):
         p[order[i]] = order[(i + 1) % n]
