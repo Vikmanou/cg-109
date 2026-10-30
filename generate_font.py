@@ -1,3 +1,5 @@
+# slash.ttf builder
+
 import random
 
 from fontTools.fontBuilder import FontBuilder
@@ -96,7 +98,7 @@ def glyph_class(label, families, state):
 def build_features(next_states):
     lines = []
 
-
+    # Matching family order makes substitutions preserve the glyph family.
     for state in range(STATES):
         lines.append(glyph_class(f"s{state}", FAMILIES, state))
 
@@ -115,7 +117,7 @@ def build_features(next_states):
                 lines.append(f"sub @s{source_state} by @s{target_state};")
         lines.append(f"}} set{target_state};")
 
-
+    # The previous glyph already has its state; the apostrophe marks the current one.
     lines.append("feature calt {")
     for group in range(GROUPS):
         for state in range(STATES):
@@ -136,7 +138,7 @@ def build_font(output_path="slash.ttf"):
 
     font = FontBuilder(UNITS_PER_EM, isTTF=True)
 
-
+    # Fixed timestamps keep builds reproducible.
     font.updateHead(created=2082844800, modified=2082844800)
     font.setupGlyphOrder(list(glyphs))
     font.setupCharacterMap(character_map)
